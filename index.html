@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111315">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Шахи вдвох">
+<title>Шахи вдвох</title>
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="app">
+  <h1>Шахи вдвох</h1>
+
+  <div id="install" class="card" hidden>
+    <h2>Зробіть значок на iPhone</h2>
+    <p>Унизу Safari натисніть «Поділитися», потім «На початковий екран». Гра відкриватиметься зі значка, на весь екран.</p>
+    <div class="row"><button id="install-close" class="chip">Зрозуміло</button></div>
+  </div>
+
+  <section id="setup" hidden>
+    <div class="card">
+      <h2>Мені надіслали код</h2>
+      <label for="code-input">Код гри</label>
+      <input id="code-input" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="60">
+      <p id="setup-error" class="error" hidden></p>
+      <button id="join" class="primary">Приєднатись</button>
+    </div>
+    <div class="card">
+      <h2>Нова гра</h2>
+      <p class="label">Ваш колір</p>
+      <div class="row">
+        <button class="chip selected" data-side="w">Білі</button>
+        <button class="chip" data-side="b">Чорні</button>
+      </div>
+      <button id="create" class="primary">Створити гру</button>
+    </div>
+    <p class="rule">Правило гри: кожен може сам увімкнути підказки рушія. Суперник не бачить, чи вони у вас увімкнені.</p>
+  </section>
+
+  <section id="game" hidden>
+    <div id="invite" class="card accent" hidden>
+      <h2>Надішліть посилання суперникові</h2>
+      <p id="invite-code" class="code"></p>
+      <div class="row">
+        <button id="share" class="primary small">Надіслати</button>
+        <button id="copy" class="chip">Копіювати</button>
+      </div>
+    </div>
+
+    <div id="board-wrap">
+      <div id="board" role="grid" aria-label="Шахова дошка"></div>
+      <svg id="arrows" viewBox="0 0 800 800" aria-hidden="true"></svg>
+    </div>
+
+    <div class="card">
+      <p id="status" class="status"></p>
+      <p id="link-state" class="muted"></p>
+      <div class="row">
+        <button id="hints" class="chip">Підказки: вимк.</button>
+        <button id="resign" class="chip">Здатися</button>
+        <button id="leave" class="chip">Вийти</button>
+      </div>
+    </div>
+    <p class="rule">Правило гри: кожен може сам увімкнути підказки рушія. Суперник не бачить, чи вони у вас увімкнені.</p>
+    <div class="card" id="moves-card" hidden>
+      <h2>Ходи</h2>
+      <p id="moves" class="muted"></p>
+    </div>
+  </section>
+
+  <p id="loading" class="muted">Завантаження…</p>
+</main>
+
+<dialog id="promotion" aria-label="Перетворення пішака">
+  <p>На кого перетворити пішака?</p>
+  <div class="row" id="promotion-pieces"></div>
+</dialog>
+
+<footer>
+  Stockfish (GPL v3, <a href="https://github.com/official-stockfish/Stockfish">код</a>),
+  chess.js (BSD), фігури Cburnett (GPL v2+).
+  Передаються лише ходи, через <a href="https://ntfy.sh">ntfy.sh</a>.
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
